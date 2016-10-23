@@ -1,0 +1,44 @@
+<div class="index-view">
+	<ul class="nav-view">
+        <li>
+            <img src="./images/main/sort_new1.png" />
+            <span>绘画</span>
+        </li>
+        <li>
+            <img src="./images/main/sort_new2.png"/>
+            <span>书法</span>
+        </li>
+        <li>
+            <img src="./images/main/sort_new3.png"/>
+            <span>陶瓷</span>
+        </li>
+        <li>
+            <img src="./images/main/sort_new4.png"/>
+            <span>珠宝玉石</span>
+        </li>
+        <li>
+            <img src="./images/main/sort_new5.png" />
+            <span>传统工艺</span>
+        </li>
+        <li>
+            <img src="./images/main/sort_new6.png"/>
+            <span>文玩杂项</span>
+        </li>
+
+    </ul>
+    
+    <div class="main-content">
+    	<ul>
+    		<li v-for="item in items">
+    			<img v-bind:src="item.img" />
+                    
+                    <b>{{item.title}}</b>
+                    <div>
+                        <span>{{item.price}}</span>
+                        <img src="./images/main/shopping.gif"/>
+                    </div>
+    		</li>
+    	</ul>
+    </div>
+	
+</div>

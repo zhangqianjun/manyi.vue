@@ -1,0 +1,76 @@
+.person-view{
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    
+    background:#fff;
+    overflow:hidden;
+    .person-top-border{
+        height:40px;
+        background:#fff;
+        .person-top{
+        width:100%;
+        display:flex;
+        position:absolute;
+        z-index:9;
+        dl{
+        
+            width:25%;
+            font-size:14px;
+    
+            dt{
+                height:40px;
+                line-height:40px;
+                background:#fff;
+                
+            }
+            dd{
+                width:100%;
+                background:#fff;
+                height:35px;
+                display:none;
+            }
+            
+        }
+        .dldl{
+            dd{
+                display:block;
+            }
+        }
+    }
+    }
+    .actor{
+        flex:1;
+        
+        overflow:hidden;
+        .scroll-actor{
+            ul{
+                display:flex;
+                width:100%;
+                flex-wrap:wrap;
+                li{
+                    width:25%;
+                    position:relative;
+                    text-align:center;
+                    img{
+                        width:95%;
+                        height:99px;
+                    }
+                    b{
+                        font-weight:normal;
+                        font-size:12px;
+                        display:block;
+                        width:95%;
+                        background:#000;
+                        opacity:0.5;
+                        color:#fff;
+                        position:absolute;
+                        bottom:0;
+                        left:2%;
+                    }
+                }
+            }
+        }
+    }
+    
+}

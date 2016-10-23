@@ -1,0 +1,132 @@
+.detail-view-top{
+    height:50px;
+    background:#fff;
+    ul{
+        display:flex;
+        justify-content:space-between;
+        width:95%;
+        margin:0 auto;
+        height:50px;
+        align-items:center;
+        li{
+            width:30px;
+            height:30px;
+            border-radius:5px;
+            
+            
+        }
+        :nth-child(1){
+            background:rgba(0,0,0,0.6) url("/images/detail/return.gif") center no-repeat;
+            background-size:15px 15px;
+        }
+        :nth-child(2){
+            background:rgba(0,0,0,0.6) url("/images/detail/love.gif") center no-repeat;
+            background-size:20px 20px;
+        }
+    }
+}
+
+.detail-scroll-border{
+    flex:1;
+    display:flex;
+    overflow:hidden;
+    .detail-scroll{
+        height:100%;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        background:#fff;
+        .detail-view{
+            width:98%;
+            ul{
+                :nth-child(1){
+                    max-width:100%;
+                    max-height:100%;
+                }
+                :nth-child(2){
+                    height:30px;
+                    line-height:30px;
+                    font-size:16px;
+                    font-weight:bold;
+                    
+                }
+                :nth-child(3){
+                    height:40px;
+                    line-height:40px;
+                    color:#656565;
+                }
+                :nth-child(4){
+                    height:30px;
+                    color:#f54372;
+                    font-size:18px;
+                    font-weight:bold;
+                    border-bottom:1px solid darkgrey;
+                }
+                :nth-child(5){
+                    height:80px;
+                    display:flex;
+                    align-items:center;
+              
+                    img{
+                        width:60px;
+                        height:60px;
+                    }
+                    span{
+                        padding-left:20px;
+                    }
+                }
+                :nth-child(6){
+                    font-size:16px;
+                    color:#656565;
+                }
+            }
+        }
+    }
+}
+
+.detail-view-bottom{
+    height:60px;
+    ul{
+        height:60px;
+        display:flex;
+        li{
+            width:33.3%;
+            
+        }
+        :nth-child(1){
+           
+            
+            
+            span{
+                padding-top:5px;
+                font-size:14px;
+                color:#656565;
+                display:block;
+                line-height:20px
+                
+                
+            }
+            
+                
+                
+                font-size:20px;
+                color:#d6436a;
+            
+        }
+        :nth-child(2){
+            background:#6471ab;
+            color:#fff;
+            font-size:24px;
+            text-align:center;
+            line-height:60px;
+            
+        }
+        :nth-child(3){
+            background:#e64e76;
+            color:#fff;
+            font-size:24px;
+            text-align:center;
+            line-height:60px;
+        }
+    }
+}
