@@ -1,7 +1,7 @@
 
 import '../styles/app.scss';
 
-
+import guide from "./components/guide.vue";
 import index from "./components/index.vue";
 import main from "./components/main.vue";
 
@@ -11,19 +11,23 @@ import lang from "./components/lang.vue";
 import my from "./components/my.vue";
 import myMain from "./components/my-main.vue";
 import login from "./components/my-login.vue";
+import zhuce from "./components/my-zhuce.vue";
+import myCenter from "./components/my-center.vue";
 
 import detail from "./components/detail.vue";
-import Vue from "./libs/vue.js";
-import VueRouter from "./libs/vue-router.js";
-Vue.use(VueRouter);
+
 
 let router = new VueRouter();
+import store from "./vuex/store";
 
-let App = Vue.extend({});
+let App = Vue.extend({store:store});
 //配路由
 
 router.map({
 	'/':{
+		component:guide
+	},
+	'/index':{
 		component:index,
 		subRoutes:{
 			'/':{
@@ -48,6 +52,12 @@ router.map({
 					'/login':{
 
 						component:login
+					},
+					'/zhuce':{
+						component:zhuce
+					},
+					'/myCenter':{
+						component:myCenter
 					}
 				}
 			},

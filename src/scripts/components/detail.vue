@@ -25,10 +25,11 @@
 	            <img src="/images/main/logo.gif" />
 	            <span>相关作品</span>
 	</div>
-	<div class="main-content">
+	<div class="main-content-border">
+		<div class="main-content-div">
 	    	
-	    	<ul>
-	    		<li v-for="item in params.zuopin" v-link="{path:'/detail',query:{id:item.id}}">
+	    	<!--<ul>
+	    		<li v-for="item in params.zuopin" v-link="{path:'/index/detail',query:{id:item.id}}">
 	    			
 	    			<img v-bind:src="item.img"/>
 	                    
@@ -39,8 +40,19 @@
 	                    </div>
 	               
 	    		</li>
-	    	</ul>
+	    	</ul>-->
+	    	
+	    	<div v-for="item in params.zuopin" class="content">
+	    		<img v-bind:src="item.img" />
+	    		<b>{{item.title}}</b>
+	    		<div class="li-bot">
+	                        <span>{{item.price}}</span>
+	                        <img src="/images/main/shopping.gif"/>
+	            </div>
+	    	</div>
 	</div>
+	</div>
+	
 </div>
 </div>
 
@@ -51,12 +63,14 @@
 		<li>立即购买</li>
 	</ul>
 </div>
+<div class="scroll-view-top" v-on:click="scrollTop">
+	<p><img src="/images/main/top.gif"/></p>
+	<p>顶部</p>
+</div>
 </template>
 <script>
-	var Vue=require("../libs/vue.js");
-	var VueResource=require("../libs/vue-resource.min.js");
-	Vue.use(VueResource);
 	
+	var scroll;
 	export default{
 		data(){
 			return{
@@ -64,13 +78,18 @@
 			}
 		},
 		ready:function(){
-			this.$http.get('./mock/'+this.$route.query.id+'.json')
+			this.$http.get('/rest/detailId'+this.$route.query.id)
 			.then((res)=>{
 				this.params=res.data;
 			}),
 			setTimeout(function(){
-				new IScroll('.detail-scroll-border');
+				scroll=new IScroll('.detail-scroll-border');
 			},500)
+		},
+		methods:{
+			scrollTop(){
+				scroll.scrollTo(0,0);
+			}
 		}
 	}
 </script>

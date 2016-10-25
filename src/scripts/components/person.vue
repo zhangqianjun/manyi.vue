@@ -10,7 +10,7 @@
 	<div class="person-top-border">
 	<div class="person-top">
 		<dl v-for="item in items"  :class="yes==$index? 'dldl' : ''">
-			<dt v-on:click="change($index)">
+			<dt v-on:click="changes($index)">
 				<span>{{item.odt}}</span>
 				<img v-bind:src="yes==$index? item.imgs:item.img" />
 			</dt>
@@ -50,14 +50,23 @@
 	</div>
 	
 </div>
+<div class="scroll-view-top" v-on:click="scrollTop">
+	<p><img src="/images/main/top.gif"/></p>
+	<p>顶部</p>
+</div>
 
 </template>
 <script>
-	var Vue=require('../libs/vue.js');
-	var VueResource=require('../libs/vue-resource.min.js');
-	Vue.use(VueResource);
+
 	
+	import { changeIndex } from "../vuex/actions";
+	var scroll;
 	export default{
+		vuex:{
+			actions:{
+				change:changeIndex
+			}
+		},
 		data(){
 			return{
 				yes:5,
@@ -71,17 +80,18 @@
 			}
 		},
 		ready:function(){
-			this.$http.get('./mock/person.json')
+			this.$http.get('/rest/person')
 			.then((res)=>{
-				this.list=res.data;
+				this.list=res.data.data;
 			});
 			setTimeout(function(){
-				new IScroll(".actor");
-			},500)
+				scroll=new IScroll(".actor",{click:true});
+			},500);
+			this.change(1);
 			
 		},
 		methods:{
-			change(i){
+			changes(i){
 				console.log(i);
 				if(this.yes==i){
 					this.yes=5;
@@ -89,6 +99,9 @@
 					this.yes=i;
 				}
 				
+			},
+			scrollTop(){
+				scroll.scrollTo(0,0);
 			}
 		}
 	}

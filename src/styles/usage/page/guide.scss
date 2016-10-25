@@ -1,0 +1,29 @@
+.guide-view{
+    height:100%;
+    background:#fff;
+    .guide-view-img{
+        height:60%;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        img{
+        width:60%;
+        
+        }
+    }
+    .guide-view-text{
+        height:30%;
+        display:flex;
+        flex-direction:column;
+        color:#f54372;
+        font-size:20px;
+        justify-content:center;
+        align-items:center;
+    }
+    
+}
+
+.expand-transition{
+    transition: all .5s ease;
+}
+

@@ -13,7 +13,16 @@ module.exports={
 	devServer: {
 	    contentBase: __dirname + '/prd',
 	    port: 80,
-	    inline: true
+	    inline: true,
+	    proxy:{
+	    	'/rest/*':{
+	    		target:'http://localhost:8888',
+	    		secure:false,
+	    		pathRewrite:{
+	    			'^/rest':''
+	    		}
+	    	}
+	    }
 	},
 	module:{
 		loaders:[

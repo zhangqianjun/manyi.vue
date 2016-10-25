@@ -11,7 +11,7 @@
 	<div class="person-top-border">
 	<div class="person-top">
 		<dl v-for="item in items"  :class="yes==$index? 'dldl' : ''">
-			<dt v-on:click="change($index)">
+			<dt v-on:click="changes($index)">
 				<span>{{item.odt}}</span>
 				<img v-bind:src="yes==$index? item.imgs:item.img" />
 			</dt>
@@ -45,14 +45,22 @@
 	</div>
 	
 </div>
+<div class="scroll-view-top" v-on:click="scrollTop">
+	<p><img src="/images/main/top.gif"/></p>
+	<p>顶部</p>
+</div>
 </template>
 
 <script>
-	var Vue=require("../libs/vue.js");
-	var VueResource=require("../libs/vue-resource.min.js");
-	Vue.use(VueResource);
+
+	import { changeIndex } from "../vuex/actions";
 	var scroll;
 	export default{
+		vuex: {
+      		actions: {
+        		change: changeIndex
+      		}
+   		},
 		data(){
 			return{
 				yes:5,
@@ -65,20 +73,21 @@
 			}
 		},
 		ready:function(){
-			this.$http.get('./mock/lang.json')
+			this.$http.get('/rest/lang')
 			.then((res)=>{
-				this.list=res.data;
+				this.list=res.data.data;
 			}),
 			
 			setTimeout(function(){
 				scroll=new IScroll('.lang-view-content',{
 					click:true
 				})
-			},500)
+			},500);
+			this.change(3);
 			
 		},
 		methods:{
-			change(i){
+			changes(i){
 				if(i==this.yes){
 					this.yes=5;
 				}else{
@@ -87,13 +96,16 @@
 			},
 			more(){
 				var that=this;
-				this.$http.get('./mock/lang.json')
+				this.$http.get('/rest/lang')
 			.then((res)=>{
-				that.list=that.list.concat(res.data);
+				that.list=that.list.concat(res.data.data);
 			});
 			setTimeout(function(){
 				scroll.refresh();
 			},500)
+			},
+			scrollTop(){
+				scroll.scrollTo(0,0);
 			}
 		}
 	}

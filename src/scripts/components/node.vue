@@ -43,28 +43,38 @@
     </div>
 </div>
 </div>
+<div class="scroll-view-top" v-on:click="scrollTop">
+	<p><img src="/images/main/top.gif"/></p>
+	<p>顶部</p>
+</div>
 </template>
 <script>
-	var Vue=require("../libs/vue.js");
-	var VueResource=require("../libs/vue-resource.min.js");
-	Vue.use(VueResource);
+
+	import { changeIndex } from "../vuex/actions";
 	var iscroll;
 	export default{
+		vuex: {
+      		actions: {
+        		change: changeIndex
+      		}
+    	},
 		data(){
 			return{
 				list:[]
 			}
 		},
 		ready:function(){
-			this.$http.get("./mock/node.json")
+			this.$http.get("/rest/nodeList")
 			.then((res)=>{
-				this.list=res.data;
+				this.list=res.data.data;
 			}),
 			setTimeout(function(){
 				iscroll=new IScroll('.node-view',{
 					click:true
 				})
-			},500)
+			},500);
+			this.change(2);
+			
 		},
 		methods:{
 			moreList(){
@@ -78,6 +88,9 @@
 					iscroll.refresh();
 				},500)
 			});
+			},
+			scrollTop(){
+				iscroll.scrollTo(0,0);
 			}
 		}
 	}
